@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>NIE HUB</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
+  	<link rel="stylesheet" type="text/css" href="{% static "css/books.css" %}">
+  	<link rel="stylesheet" type="text/css" href="{% static "css/events.css" %}">
+  	<script type="text/javascript" src="{% static "js/events.js" %}"></script>
+  	<script type="text/javascript" src="{% static "js/main.js" %}"></script>
+</head>
+	
+<body style="background-image:url('http://mdbootstrap.com/img/Photos/Others/images/91.jpg'); background-repeat: no-repeat; background-size: cover;">
+	<div class="container-fluid">  
+		<nav class="navbar navbar-inverse">
+			  <div class="container-fluid">
+			    <div class="navbar-header">
+			      <a class="navbar-brand" href="#">NIE HUB</a>
+			    </div>
+			    <ul class="nav navbar-nav">
+			      <li class="dropdown">
+			        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Posts
+			        <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			           	{% if request.session.category == "teacher" %}
+				        <li><a href="{% url "newPost" %}">Create Post</a></li>
+				        {% else %}
+				        <li><a style="background-color: gray">Create Post</a></li>
+				        {% endif %}
+			            <li><a href="{% url "viewPost" %}">View Posts</a></li>
+			        </ul>
+			      </li>
+			      <li class="dropdown">
+			        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Events
+			        <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			          <li><a href="{% url "create1" %}">Create Event</a></li>
+			          <li><a href="{% url "manage" %}">Manage Events</a></li>
+			          <li><a href="{% url "event_view" %}">View Events</a></li>
+			          <li><a href="{% url "booked_items" %}">Booked Items</a></li>			     
+			        </ul>
+			      </li>
+			      <li class="dropdown">
+			        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Books
+			        <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+					  <li><a href="{% url "buy1" %}">Buy Books(Based on sem)</a></li>
+					  <li><a href="{% url "buy" %}">Buy Books(Based on entered details)</a></li>
+			          <li><a href="{% url "sell" %}">Sell Books</a></li>
+			          <li><a href="{% url "waiting_books" %}">View Bookings</a></li>
+			          <li><a href="{% url "transaction_books" %}">View Transactions</a></li>
+			        </ul>
+			      </li>
+			    </ul>
+			    <ul class="nav navbar-nav navbar-right">
+			      <li class="dropdown">
+			        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile
+			        <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			          <li><a href="{% url "myprofile" %}">My Profile</a></li>
+			          <li><a href="{% url "mybooks" %}">My Books</a></li>
+			          <li><a href="{% url "myevents" %}">My Events</a></li>
+			          {% if request.session.category == "teacher" %}
+			          	<li><a href="{% url "myposts" %}">My Posts</a></li>
+			          {% endif %}
+			        </ul>
+			      </li>
+			      <li><a href="{% url "logout" %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+			    </ul>
+			  </div>  
+		</nav>
+
+		<div class="container-fluid">
+
+			{% block content %}
+			{% endblock %}
+		</div>
+	</div>	
+        
+</body>
+</html>
+

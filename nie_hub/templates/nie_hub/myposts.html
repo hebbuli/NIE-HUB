@@ -1,0 +1,28 @@
+{% extends "nie_hub/mainbase.html" %}
+{% block content %}
+{% if length != 0 %}
+	{% for i in pid %}
+		<form id ="align" method="POST" action="{% url 'myposts' %}">{% csrf_token %}
+			<!-- <div class="row"> -->
+			  <div class="col-sm-4 col-md-4">
+		    	<div class="thumbnail" style="float:left; display: inline-block;opacity: 0.9;">
+			      <!-- <img src="https://www.google.co.in/search?q=data+communications+and+networking+{{i.book_details_id.book_id.author}}+{{i.book_details_id.edition}}th+edition&rlz=1C1DVJR_enIN808IN808&source=lnms&tbm=isch&sa=X&ved=0ahUKEwj40fiU2ODeAhVMf30KHeN5CQ8Q_AUIDygC&biw=1536&bih=754#imgrc=WBIr1yYv12eDjM:" alt="..."> -->
+			      <div class="caption" style="color:orange; opacity: 0.9;">
+			        <h2>{{i.title}}</h2><hr>
+			        <h4>{{i.body|linebreaks|safe}}</h4>
+					{% for attachment in aid %}
+					{% if attachment.post_id == i %}
+					<div> <span class="glyphicon glyphicon-link"></span><a href="{{attachment.attachment_link.url}}">{{attachment.attachment_link}}</a><br></div>
+					{% endif %}
+					{% endfor %}
+			        <h4><input type="submit" name="submit{{i.post_id}}" value="Delete" class="btn btn-success form-control"></h4>
+			      </div>
+			    </div>
+			  </div>
+			<!-- </div> -->
+		</form>
+	{% endfor %}
+	{% else %}
+		<h2 style="color: white;">You haven't posted anything yet!</h2>
+{% endif %}
+{% endblock %}

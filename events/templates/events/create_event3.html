@@ -1,0 +1,32 @@
+{% extends "nie_hub/mainBase.html" %}
+{% load static %}
+{% block styles %}
+<script type="text/javascript" src=" {% static "js/events.js"%}"></script>
+{% endblock %}
+{% block content %}
+	<h1 style="color: white; text-align: center;" >MORE DETAILS</h1>
+	<hr>
+	<form class="form-group" method="POST" style="opacity: 0.9">{% csrf_token %}
+		{% for items in all_items %}
+		<div>
+			<h2 style="display: inline-block;">{{items.name}}</h2><h4 style="display: inline-block;">-({{items.category}})</h4><br>
+			<div class="form1">
+				<h4>Is this available in different sizes?</h4>
+				<label for="type">YES</label>
+				<input type="checkbox" name="type{{ forloop.counter0 }}" id="type{{ forloop.counter0 }}" onchange="changeForm({{ forloop.counter0 }})">
+				<div id="default-form{{ forloop.counter0 }}">
+					<label for="quantity">Initial Quantity:</label>
+					<input type="text" name="quantity{{ forloop.counter0 }}" id="quantity" class="form-control">
+					<label for="price">Price (Rs.)</label>
+					<input type="text" name="price{{ forloop.counter0 }}" id="price" class="form-control">
+					<input type="text" name="item{{ forloop.counter0 }}" value="{{items.item_id}}" style="display: none">
+				</div>
+				<div id="custom-form{{ forloop.counter0 }}">	
+				</div>				
+			</div>
+		</div>
+		<hr>
+		{% endfor %}
+		<input type="submit" name="submit" class="btn btn-success">
+	</form><br><br>
+{% endblock %}

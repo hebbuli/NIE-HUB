@@ -1,0 +1,27 @@
+{% extends "nie_hub/mainbase.html" %}
+{% block content %}
+	{% if length != 0 %}
+		<form id ="align" method="POST" action="{% url 'mybooks' %}">{% csrf_token %}
+			<table class="table table-bordered">
+				<tr style="background-color: green;color: yellow;">
+					<th><h3 style="font-size: 200%;">Book</h3></th>
+					<th><h3 style="font-size: 200%;">Price</h3></th>
+					<th class="col-sm-2"><h3>Remove it</h3></th>
+				</tr>
+				{% for i in bdid %}
+				{% if i.status == 1 %}
+				<div>
+					<tr class="caption" style="color:white; opacity: 0.9;"><td><h4 style="font-size: 200%;">{{i.book_id.title}} by {{i.book_id.author}} ,EDITION {{i.edition}} </h4></td>
+					<td><h4 style="font-size: 200%;">{{i.price}}</h4></td>
+					<td><h4><input type="submit" name="submit{{i.book_details_id}}" value="Yes" class="btn btn-success form-control"></h4></td></tr>
+				</div>
+				{% endif %}
+				{% endfor %}
+			</table>
+		</form>
+
+	{% else %}
+		<h2 style="color: white;">You don't have any book of yours for sale!!</h2>
+
+	{% endif %}
+{% endblock %}

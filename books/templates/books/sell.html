@@ -1,0 +1,34 @@
+{% extends "nie_hub/mainbase.html" %}
+{% block content %}
+	<form id ="align" class="form-group" method="POST">{% csrf_token %}
+		<h1>Enter the Book details:</h1>
+		<label for="branch">Branch:</label>
+		<select name="branch" id="branch" class="form-control">
+			<option value="CE">CE</option>
+			<option value="CSE">CSE</option>
+			<option value="ECE">ECE</option>
+			<option value="EEE">EEE</option>
+			<option value="ISE">ISE</option>
+			<option value="ME">ME</option>
+			<option value="IPE">IPE</option>
+		</select>
+
+		<label for="sem">Sem:</label>
+		<input type="number" name="sem" id="sem" min="1" max="8" class="form-control" required>
+
+		<label for="title">Title:</label>
+		<input type="text" name="title" id="title" class="form-control" required>
+
+		<label for="author">Author:</label>
+		<input type="text" name="author" id="author" class="form-control" required>
+
+		<label for="edition">Edition:</label>
+		<input type="number" name="edition" id="edition" min="1" class="form-control" required>
+
+		<label for="price">Price:</label>
+		<input type="number" name="price" id="price" min="1" class="form-control" required>
+
+		<input type="submit" name="submit" value="Submit" class="btn btn-success form-control">
+	</form>
+
+{% endblock %}

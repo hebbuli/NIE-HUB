@@ -1,0 +1,71 @@
+{% extends "nie_hub/mainBase.html" %}
+{% load static %}
+{% block styles %}
+<style type="text/css">
+	#map{
+		height: 300px;
+		width: 30%;
+	}
+</style>
+<script type="text/javascript" src=" {% static "js/events.js"%}"></script>
+{% endblock %}
+{% block content %}
+	<div class="event-display">	
+		<div class="thumbnail" style="background-color: #ffffe6">
+	      <div class="caption">
+	        <h1 style="color: #3366BB;">{{event.name}}</h1>
+	        <div class="date" style="display: inline-block;">-On {{event.event_date}}</div>
+			<div class="venue well well-sm" style="display: inline-block;"><span class="glyphicon glyphicon-map-marker"></span>{{event.venue}}</div>
+	        <p>{{event.body|linebreaks}}</p>
+	        {% if items_length != 0 %}
+	        <button class="btn btn-default" onclick="view()">View Items</button>
+	        <div id="item-view" style="display: none;">
+	        	<form method="POST">{% csrf_token %}
+	        	<table class="table table-bordered">
+	        		<tr>
+	        			<th>Item</th>
+	        			<th>Category</th>
+	        			<th>Size</th>
+		        		<th>Available Quantity</th>
+		        		<th>Price</th>
+		        		<th>Seller</th>
+		        		<th>Order Quantity</th>
+		        		<th>Book It</th>
+	        		</tr>
+	        		{% for item_detail in item_details %}
+	        		<tr>
+	        			<td>{{item_detail.item_id.name}}</td>
+	        			<td>{{item_detail.item_id.category}}</td>
+	        			<td>{{item_detail.size}}</td>
+	        			<td>{{item_detail.quantity}}</td>
+	        			<td>{{item_detail.price}}</td>
+	        			<td>{{item_detail.item_id.event_id.owner_id.first_name}} {{item_detail.item_id.event_id.owner_id.last_name}}</td>
+	        			<td><input type="number" name="order-qty{{ item_detail.item_details_id }}" min="0" max= "{{item_detail.quantity}}"></td>
+	        			<td><input type="checkbox" name="order-choice{{ item_detail.item_details_id }}"></td>
+	        		</tr>
+	        		{% endfor %}
+	        	</table>
+	        	<input type="submit" class="btn btn-default" name="submit"  value="Book">
+	       		</form>
+	        </div>
+	        {% endif %}
+	        <div id="map"></div>
+
+	        <script type="text/javascript">
+	        	function initMap() {
+				  // The location of Uluru
+				  var uluru = {lat: -25.344, lng: 131.036};
+				  // The map, centered at Uluru
+				  var map = new google.maps.Map(
+				      document.getElementById('map'), {zoom: 15, center: uluru});
+				  // The marker, positioned at Uluru
+				  var marker = new google.maps.Marker({position: uluru, map: map});
+				}
+	        </script>
+	        <script async defer
+			    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhbXgYfg03JXjDh1ftG6POB55vQeTdeqA&callback=initMap">
+			</script>
+	      </div>
+	    </div>
+	</div>
+{% endblock %}

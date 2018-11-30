@@ -1,0 +1,30 @@
+{% extends "nie_hub/mainbase.html" %}
+{% block content %}
+	{% if length != 0 %}
+		<form id ="align"  method="POST" action="{% url 'waiting_books' %}">{% csrf_token %}
+			<table class="table table-bordered">
+				<tr style="background-color: green;color: yellow ">
+					<th><h3>Book Name</h3></th>
+					<th><h3>Seller</h3></th>
+					<th><h3>Price</h3></th>
+					<th class="col-sm-2"><h3>Book it</h3></th>
+				</tr>
+				{% for i in bdid %}
+				{% if i.owner_id != uid and i.status == 1 %}
+				<div>
+				<tr><td><h4>{{a}} by {{b}} ,EDITION {{c}} </h4></td>
+				<td><h4>{{i.owner_id.first_name}} {{i.owner_id.last_name}}</h4></td>
+				<td><h4>{{i.price}}</h4></td>
+				<td><h4><input type="submit" name="submit{{i.book_details_id}}" value="Yes" class="btn btn-success form-control"></h4></td></tr>
+				</div>
+				{% endif %}
+				{% endfor %}
+			</table>
+		</form>
+
+	{% else %}
+		<h2 style="color: white;">No such book available</h2>
+
+	{% endif %}
+{% endblock %}
+

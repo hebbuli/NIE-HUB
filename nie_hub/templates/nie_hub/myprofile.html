@@ -1,0 +1,29 @@
+{% extends "nie_hub/mainBase.html" %}
+{% block content %}
+<h1 style="text-align: center; color: white"><b>User Information</b></h1>
+	<form id ="align" class="form-group" method="POST" action="{% url 'change' %}">{% csrf_token %}
+		<label>Name:</label>
+		<label type="text" name="fname" id="fname" class="form-control">{{uid.0}}</label>
+	
+		<label>Branch:</label>
+		<label class="form-control">{{uid.1}}</label>
+
+		<label>Sem:</label>
+		<label class="form-control">{{uid.2}}</label>
+
+		<label>Address:</label>
+		<label name="address" id="address" class="form-control" rows="5">{{uid.3}}</label>
+
+		<label>Email:</label>
+		<label type="text" name="email" id="email" class="form-control">{{uid.4}}</label>
+
+		<label>Phone Number:</label>
+		<label class="form-control">{{uid.5}}</label>
+
+		<label for="usn">USN: </label>
+		<label class="form-control">{{uid.6}}</label>
+
+		<input type="submit" name="submit" value="Change Password" class="btn btn-success form-control">
+	</form>
+
+{% endblock %}

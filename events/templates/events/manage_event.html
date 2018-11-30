@@ -1,0 +1,34 @@
+{% extends "nie_hub/mainBase.html" %}
+{% block content %}
+	<h1 style="color: white; ">MANAGE EVENTS</h1>		
+	<hr>
+	{% if length != 0 %}
+	<form method="POST">{% csrf_token %}
+		<table class="table table-bordered">
+			<tr>
+				<th style="color: white;font-size: 150%;">Event Name</th>
+				<th style="color: white;font-size: 150%;">Item Name</th>
+				<th style="color: white;font-size: 150%;">Size</th>
+				<th style="color: white;font-size: 150%;">Requested Quantity</th>
+				<th style="color: white;font-size: 150%;">Available Quantity</th>
+				<th style="color: white;font-size: 150%;">Buyer Name</th>
+				<th style="color: white;font-size: 150%;">Status</th>
+			</tr>
+			
+				{% for item in my_waiting_items %}
+					<tr>
+						<td style="color: white; font-size: 150%;">{{item.item_details_id.item_id.event_id.name}}</td>
+						<td style="color: white;font-size: 150%;">{{item.item_details_id.item_id.name}}</td>
+						<td style="color: white;font-size: 150%;">{{item.item_details_id.size}}</td>
+						<td style="color: white;font-size: 150%;">{{item.request_quantity}}</td>
+						<td style="color: white;font-size: 150%;">{{item.item_details_id.quantity}}</td>
+						<td style="color: white;font-size: 150%;">{{item.buyer_id.first_name}} {{item.buyer_id.last_name}}</td>
+						<td style="color: white;font-size: 150%;"><input type="submit" class="btn btn-success" name="submit{{item.item_waiting_id}}" value="ISSUE"></td>
+					</tr>
+				{% endfor %}	
+		</table>
+	</form>	
+	{% else %}
+	<h2 style="color: white;">You haven't received any orders for your event yet!</h2>
+	{% endif %}
+{% endblock %}

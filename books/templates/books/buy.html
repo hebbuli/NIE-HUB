@@ -1,0 +1,19 @@
+{% extends "nie_hub/mainbase.html" %}
+{% block content %}
+
+	<form id ="align" class="form-group" method="POST" action="{% url 'buyd' %}">{% csrf_token %}
+		<h1>Enter the Book details:</h1>
+		
+		<label for="title">Title:</label>
+		<input type="text" name="title" id="title" class="form-control" required>
+
+		<label for="author">Author:</label>
+		<input type="text" name="author" id="author" class="form-control" required>
+
+		<label for="edition">Edition:</label>
+		<input type="number" name="edition" id="edition" min="1" class="form-control" required>
+
+		<input type="submit" name="submit" value="Submit" class="btn btn-success form-control">
+	</form>
+ 
+{% endblock %}

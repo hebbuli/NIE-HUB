@@ -1,0 +1,19 @@
+{% extends "nie_hub/mainBase.html" %}
+{% block content %}
+<div class="row">
+<div class="col-sm-9">
+	<div class="thumbnail" style="float: left;display: inline-block; opacity: 0.7;" >
+      <div class="caption" style="color:yellow; background-color: green; font-size: 200%; ">
+       	<h2 style="color: white;">{{post.title}}</h2><hr>
+        <h4 style="color: yellow; font-size: 100%;" >{{post.body|linebreaks|safe}}</h4>
+		{% for attachment in attachments %}
+		<div> <span class="glyphicon glyphicon-link"></span><a href="{{attachment.attachment_link.url}}">{{attachment.attachment_link}}</a><br></div>
+		{% endfor %}
+      </div>
+    </div>
+</div>
+</div>	
+	
+	
+	
+{%endblock%}

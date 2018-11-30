@@ -1,0 +1,55 @@
+{% extends "nie_hub/base.html" %}
+
+{% block content %}
+	<div class="col-lg-2">
+		<div class="vertical-menu">
+			<a href="{%url "home" %}">Home</a>
+			<a href="{%url "login" %}" >Login</a>
+			<a href="{%url "signup" %}" class="active">Sign Up</a>
+		</div>
+	</div>
+	<form id ="align" class="form-group" method="POST">{% csrf_token %}
+		<label for="category">Are you a Student or a Teacher?</label>
+		<select name="category" id="category" class="form-control" onchange="category_change()">
+		  <option value="student">Student</option>
+		  <option value="teacher">Teacher</option>
+		</select><br>
+
+		<label for="fname">First Name:</label>
+		<input type="text" name="fname" id="fname" class="form-control" required>
+
+		<label for="lname">Last Name:</label>
+		<input type="text" name="lname" id="lname" class="form-control">
+
+		<label for="branch">Branch:</label>
+		<select name="branch" id="branch" class="form-control">
+			<option value="CE">CE</option>
+			<option value="CSE">CSE</option>
+			<option value="ECE">ECE</option>
+			<option value="EEE">EEE</option>
+			<option value="ISE">ISE</option>
+			<option value="ME">ME</option>
+			<option value="IPE">IPE</option>
+		</select>
+
+		<label for="sem">Sem:</label>
+		<input type="number" name="sem" id="sem" min="1" max="8" class="form-control" required>
+
+		<label for="address">Address:</label>
+		<textarea name="address" id="address" class="form-control" rows="5"></textarea>
+
+		<label for="email">Email:</label>
+		<input type="text" name="email" id="email" class="form-control" required>
+
+		<label for="phone_number">Contact Number: </label>
+		<input type="text" name="phone_number" id="phone_number" class="form-control" required>
+
+		<label for="usn" id="ch">USN:</label>
+		<input type="text" name="usn" id="usn" class="form-control" required>
+
+		<label for="password">Enter a valid Password:  </label>
+		<input type="password" name="password" id="password" class="form-control" required><br><br>
+
+		<input type="submit" name="submit" class="btn btn-success">
+	</form>
+{% endblock %}

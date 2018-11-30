@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>NIE HUB</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+	<img id="logo" src="{% static "img/nieLogo2.jpg" %}" >
+	<div class="container-fluid">
+		<marquee><h3>Welcome to the NIE HUB!</h3></marquee>
+		<div class="row">
+			{% block content %}
+			{% endblock %}
+		</div>
+	</div>	
+	<script type="text/javascript" src="{% static "js/main.js" %}"></script>
+</body>
+</html>

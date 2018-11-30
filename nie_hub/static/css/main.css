@@ -1,0 +1,31 @@
+#logo{
+	display: block;	
+	margin: 0 auto;
+}
+
+.vertical-menu {
+    width: 100%; 
+}
+
+.vertical-menu a {
+    background-color: #eee; 
+    color: black; 
+    display: block; 
+    padding: 12px; 
+    text-decoration: none; 
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc;
+}
+
+.vertical-menu a.active {
+    background-color: #698dc6;
+    color: white;
+}
+
+.form-group{
+    margin: 0 auto;
+    width:30%;
+}
+

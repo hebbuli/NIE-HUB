@@ -1,0 +1,41 @@
+{% extends "nie_hub/mainBase.html" %}
+{% block content %}
+	{% if length != 0 %}
+	{% for item in all_items %}
+	<div class="col-sm-6" style="backface-visibility: 0.7">
+		<div class="thumbnail" style="float:left; display: inline-block; opacity: 0.7;">
+	      <div class="caption" style="color:yellow; background-color: green; font-size: 200%;">
+	        <h3>{{item.item_details_id.item_id.name}}</h3><hr>
+	        <label>Size (if any):{{item.item_details_id.size}}</label>
+
+	        <table class="table table-bordered">
+	        	<tr>
+	        		<th>Seller Name:</td>
+	        		<td>{{item.item_details_id.item_id.event_id.owner_id.first_name}} {{item.item_details_id.item_id.event_id.owner_id.last_name}}</td>
+	        	</tr>
+	        	<tr>
+	        		<th>Seller Contant Number:</td>
+	        		<td>{{item.item_details_id.item_id.event_id.owner_id.phone_number}}</td>
+	        	</tr>
+	        	<tr>
+	        		<th>Quantity Requested:</th>
+	        		<td>{{item.request_quantity}}</td>
+	        	</tr>
+	        	<tr>
+	        		<th>Ordered Date:</th>
+	        		<td>{{item.date}}</td>
+	        	</tr>
+	        	<tr>
+	        		<th>Status</th>
+	        		<td>Yet to be confirmed</td>
+	        	</tr>
+	        </table>
+	        
+	      </div>
+	    </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    	<h2 style="color: white">No Items Booked by you</h2>
+    {% endif %}
+{% endblock %}

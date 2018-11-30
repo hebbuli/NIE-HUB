@@ -1,0 +1,27 @@
+{% extends "nie_hub/mainbase.html" %}
+{% block content %}
+	{% if length != 0 %}
+		<form id ="align" method="POST" action="{% url 'myevents' %}">{% csrf_token %}
+			<table class="table table-bordered">
+				<tr style="background-color: green;color: yellow ;opacity:0.9; ">
+					<th><h3>Event Name</h3></th>
+					<th><h3>Time</h3></th>
+					<th><h3>Venue</h3></th>
+					<th class="col-sm-2"><h3>Remove it</h3></th>
+				</tr>
+				{% for i in eid %}
+				<div>
+				<tr style="color:white; opacity: 0.9;"><td><h4 style="font-size: 200%;">{{i.name}}</h4></td>
+				<td><h4 style="font-size: 200%;">{{i.event_date}}</h4></td>
+				<td><h4 style="font-size: 200%;">{{i.venue}}</h4></td>
+				<td><h4><input type="submit" name="submit{{i.event_id}}" value="Yes" class="btn btn-success form-control"></h4></td></tr>
+				</div>
+				{% endfor %}
+			</table>
+		</form>
+
+	{% else %}
+		<h2 style="color: white;">You don't have any events hosted!!</h2>
+
+	{% endif %}
+{% endblock %}

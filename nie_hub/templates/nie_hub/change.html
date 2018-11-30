@@ -1,0 +1,17 @@
+{% extends "nie_hub/mainbase.html" %}
+{% block content %}
+		<h1 style="text-align: center"><b>Change Password</b></h1>
+	<form id ="align" class="form-group" method="POST" action="{% url 'changed' %}">{% csrf_token %}
+
+		<label for="password">Enter Current Password:</label>
+		<input type="password" name="password0" id="password" class="form-control" required>
+
+		<label for="password">Enter New Password:</label>
+		<input type="password" name="password1" id="password" class="form-control" required>
+
+		<label for="password">Confirm Password:</label>
+		<input type="password" name="password2" id="password" class="form-control" required>
+
+		<input type="submit" name="submit" value="Save" class="btn btn-success">
+	</form>
+{% endblock %}

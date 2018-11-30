@@ -1,0 +1,38 @@
+{% extends "nie_hub/mainbase.html" %}
+{% block content %}
+{% if length != 0 or length1 != 0 %}
+	{% for i in tid %}
+		<!-- <div class="row"> -->
+		  <div class="col-sm-4 col-md-4" style="backface-visibility: 0.7">
+		    <div class="thumbnail" style="float:left; display: inline-block; opacity: 0.7;">
+		      <!-- <img src="https://www.google.co.in/search?q=data+communications+and+networking+{{i.book_details_id.book_id.author}}+{{i.book_details_id.edition}}th+edition&rlz=1C1DVJR_enIN808IN808&source=lnms&tbm=isch&sa=X&ved=0ahUKEwj40fiU2ODeAhVMf30KHeN5CQ8Q_AUIDygC&biw=1536&bih=754#imgrc=WBIr1yYv12eDjM:" alt="..."> -->
+		      <div class="caption" style="color:yellow; background-color: green; font-size: 200%;">
+		        <h3 style="color: white"><b>{{i.title1}} by {{i.author1}} ,EDITION {{i.edition1}}</b></h3>
+		        <h4>Bought on: {{i.date}}</h4>
+		        <h4>Price: Rs.{{i.price1}}</h4>
+		        <h4>Bought from: {{i.owner_id1.first_name}} {{i.owner_id1.last_name}}</h4>
+		        <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+		      </div>
+		    </div>
+		  </div>
+		<!-- </div> -->
+	{% endfor %}
+	{% for i in tid1 %}
+		<!-- <div class="row"> -->
+		  <div class="col-sm-4 col-md-4" style="backface-visibility: 0.7">
+		    <div class="thumbnail" style="float:left; display: inline-block; opacity: 0.7;">
+		      <!-- <img src="https://www.google.co.in/search?q=data+communications+and+networking+{{i.book_details_id.book_id.author}}+{{i.book_details_id.edition}}th+edition&rlz=1C1DVJR_enIN808IN808&source=lnms&tbm=isch&sa=X&ved=0ahUKEwj40fiU2ODeAhVMf30KHeN5CQ8Q_AUIDygC&biw=1536&bih=754#imgrc=WBIr1yYv12eDjM:" alt="..."> -->
+		      <div class="caption" style="color:yellow; background-color: green; font-size: 200%;">
+		        <h3 style="color: white"><b>{{i.title1}} by {{i.author1}} ,EDITION {{i.edition1}}</b></h3>
+		        <h4>Sold on: {{i.date}}</h4>
+		        <h4>Price: Rs.{{i.price1}}</h4>
+		        <h4>Sold to: {{i.buyer_id1.first_name}} {{i.buyer_id1.last_name}}</h4>
+		      </div>
+		    </div>
+		  </div>
+		<!-- </div> -->
+	{% endfor %}
+	{% else %}
+		<h2 style="color: white">No transactions yet!</h2>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "nie_hub/mainBase.html" %}
+{% load static %}
+{% block styles %}
+<script type="text/javascript" src=" {% static "js/events.js"%}"></script>
+{% endblock %}
+{% block content %}
+	<form class="form-group" method="POST">{% csrf_token %}
+		<h1>Create Event</h1>
+		
+		<label for="ename">Event Name:</label>
+		<input type="text" name="ename" id="ename" class="form-control" required>
+
+		<label for="body">Body:</label>
+		<textarea name="body" id="body" class="form-control" rows="5"></textarea>
+
+		<label for="edate">Event Date And Time:</label>
+		<input type="datetime-local" name="edate" id="edate" class="form-control" required>
+
+		<label for="venue">Venue:</label>
+		<input type="text" name="venue" id="venue" class="form-control" required>
+
+		<label for="sell">Are you selling items?</label> 
+		<select name="sell" id="sell" class="form-control" onchange="buttonChange()">
+			<option value="Yes">Yes</option>
+			<option value="No">No</option>
+		</select>
+
+		<input type="submit" name="submit" id="sub" value="NEXT" class="btn btn-success form-control">
+	</form>
+{% endblock %}
