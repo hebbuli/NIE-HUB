@@ -28,7 +28,7 @@ def login(request):
                   messages.error(request, "Password does not match")
                   return redirect("login")
       else: 
-            return render(request,"nie_hub/login.html", {})
+            return render(request,'nie_hub/login.html', {})
 
 
 
@@ -146,10 +146,12 @@ def changed(request):
       if request.session.get('usn') != None:
             if request.method=='POST':
                    uid = User.objects.get(usn = request.session['usn'])
-                   if uid.password != request.POST.get('password0'):
+                   if not pbkdf2_sha256.verify(request.POST.get('password0'),uid.password):
                         return render(request,"nie_hub/changed.html",{"msg":"The Current Password you entered is wrong"})
                    else:
                         if request.POST.get('password1') == request.POST.get('password2'):
+                              uid.password= pbkdf2_sha256.encrypt(request.POST.get('password1'),rounds=12000,salt_size=32)
+                              uid.save()
                               return render(request,"nie_hub/changed.html",{"msg":"Password changed successfully!"})
                         else:
                               return render(request,"nie_hub/changed.html",{"msg":"The Passwords you entered don't match!"})
